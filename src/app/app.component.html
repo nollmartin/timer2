@@ -1,0 +1,6 @@
+{{title}}
+<hr>
+<div *ngFor="let v of zoneTimes">
+  <app-time-zone [timeZone]="v" (timeZoneChange)="timeZoneChanged($event)" #cmp></app-time-zone>  
+  <hr>
+</div>
