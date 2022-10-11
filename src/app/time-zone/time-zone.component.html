@@ -1,5 +1,4 @@
 <p>Időzóna ({{timeZone?.toZoneCity}}):</p>
-<div>{{zoneTime}}</div>
-<p>Jelenlegi-e: {{actual}}</p>
+<div>{{isActual ? 'Aktuális időzóna' : 'Nem aktuális időzóna'}}: {{zoneTime}}</div>
 <button (click)="timeRefresh()">Idő frissítése</button>
-<button (click)="setActualTime()" [disabled]="isActual" id="jelenlegi_{{timeZone?.id}}">Jelenleginek jelöl</button>
+<button (click)="changeTimeZoneClicked()" [disabled]="isActual">Aktuálisnak jelöl</button>

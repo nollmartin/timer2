@@ -10,12 +10,11 @@ export class TimeZoneComponent implements OnInit {
 
   @Input() timeZone: {toZone:String,toZoneCity:String,actual:Boolean,id:Number} | undefined
 
-  @Output() timeZoneChange = new EventEmitter<Number>();
+  @Output() changeTimeZone = new EventEmitter<String>();
     
   zoneTime:   String  = "-";
   id:         Number  = 0;
-  isActual:   Boolean = false;
-  actual:     String  = "-";
+  @Input() isActual:   Boolean = false;
 
   constructor() {}
 
@@ -27,13 +26,13 @@ export class TimeZoneComponent implements OnInit {
 
   timeRefresh() {
     this.zoneTime = new Date().toLocaleString(this.timeZone?.toZone.toString(), {timeZone: this.timeZone?.toZoneCity.toString()});
-    this.isActual === false ? this.actual="Nem aktuális" : this.actual="Aktuális";
   }
 
-  setActualTime() {
-    this.isActual=true;
+  changeTimeZoneClicked() {
+    this.changeTimeZone.emit(this.timeZone?.toZoneCity.toString());
     this.timeRefresh();
-    this.timeZoneChange.emit(this.timeZone?.id as number);
   }
+
+
 
 }

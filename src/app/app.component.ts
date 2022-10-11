@@ -9,21 +9,15 @@ import { TimeZoneComponent } from './time-zone/time-zone.component';
 })
 export class AppComponent {
   title = 'Time Zone Program';
-
-  actual = 1;
-
-  @ViewChildren('cmp') components:QueryList<TimeZoneComponent> | undefined;
+  selectedTimeZone: String = 'Europe/Budapest';
 
   zoneTimes: {toZone: String, toZoneCity: String, actual: Boolean, id: number}[] = [
     {toZone: 'hu-HU', toZoneCity: 'Europe/Budapest', actual: true, id: 1},
     {toZone: 'en-US', toZoneCity: 'America/Toronto', actual: false, id: 2}
   ]
 
-  timeZoneChanged(id: Number) {
-    this.components?.forEach(function (comp) {
-      (comp.id === id) ? comp.isActual=true : comp.isActual=false;
-      comp.timeRefresh();
-    })
+  updateSelectedTimezone(timeZone: String) {
+    this.selectedTimeZone=timeZone;
   }
 
 }
