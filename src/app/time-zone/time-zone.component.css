@@ -1,0 +1,19 @@
+.buttonAktiv {
+    background-color: cadetblue;
+    color: antiquewhite;
+}
+
+.buttonInaktiv {
+    background-color:darkgoldenrod;
+    color:black;
+}
+
+.aktivZone {
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+.inAktivZone {
+    border: 1px solid white;
+    border-radius: 5px;
+}

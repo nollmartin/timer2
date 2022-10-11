@@ -1,4 +1,8 @@
-<p>Időzóna ({{timeZone?.toZoneCity}}):</p>
-<div>{{isActual ? 'Aktuális időzóna' : 'Nem aktuális időzóna'}}: {{zoneTime}}</div>
-<button (click)="timeRefresh()">Idő frissítése</button>
-<button (click)="changeTimeZoneClicked()" [disabled]="isActual">Aktuálisnak jelöl</button>
+<div [ngClass]="{aktivZone: isActual, inAktivZone: !isActual}">
+Időzóna: 
+<input type="text" [(ngModel)]="timeZone!.toZoneCity">
+<button [ngClass]="['buttonAktiv']" (click)="timeRefresh()">Időzóna / idő frissítése</button>
+<div>{{isActual ? 'Aktuális időzóna' : 'Nem aktuális időzóna'}}: <br> {{zoneTime | date:'short'}}</div>
+<button [ngClass]="{buttonAktiv: !isActual, buttonInaktiv: isActual}" (click)="changeTimeZoneClicked()" [disabled]="isActual">Aktuálisnak jelöl</button>
+<hr>
+</div>

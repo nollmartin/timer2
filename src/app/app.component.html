@@ -1,6 +1,8 @@
 {{title}}
 <hr>
+<button (click)="addZoneTime()" *ngIf="zoneCount<5">Új időzóna componens hozzáadása</button> (most hány van: {{zoneCount}})
+<hr>
 <div *ngFor="let v of zoneTimes">
-  <app-time-zone [timeZone]="v" [isActual]="selectedTimeZone===v.toZoneCity.toString()" (changeTimeZone)="updateSelectedTimezone($event)"></app-time-zone>  
+  <app-time-zone [timeZone]="v" [isActual]="selectedTimeZone===v.id" (changeTimeZone)="updateSelectedTimezone($event)"></app-time-zone>  
   <hr>
 </div>

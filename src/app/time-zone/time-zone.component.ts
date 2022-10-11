@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter,OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-time-zone',
@@ -8,11 +8,11 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TimeZoneComponent implements OnInit {
 
-  @Input() timeZone: {toZone:String,toZoneCity:String,actual:Boolean,id:Number} | undefined
+  @Input() timeZone: {toZone:String,toZoneCity:String,actual:Boolean,id:number} | undefined
 
-  @Output() changeTimeZone = new EventEmitter<String>();
+  @Output() changeTimeZone = new EventEmitter<number>();
     
-  zoneTime:   String  = "-";
+  zoneTime:   Date = new Date();
   id:         Number  = 0;
   @Input() isActual:   Boolean = false;
 
@@ -25,14 +25,13 @@ export class TimeZoneComponent implements OnInit {
   }
 
   timeRefresh() {
-    this.zoneTime = new Date().toLocaleString(this.timeZone?.toZone.toString(), {timeZone: this.timeZone?.toZoneCity.toString()});
+    let zT = new Date().toLocaleString(this.timeZone?.toZone.toString(), {timeZone: this.timeZone?.toZoneCity.toString()});
+    this.zoneTime = new Date(zT);
   }
 
   changeTimeZoneClicked() {
-    this.changeTimeZone.emit(this.timeZone?.toZoneCity.toString());
+    this.changeTimeZone.emit(this.timeZone?.id);
     this.timeRefresh();
   }
-
-
 
 }

@@ -9,15 +9,19 @@ import { TimeZoneComponent } from './time-zone/time-zone.component';
 })
 export class AppComponent {
   title = 'Time Zone Program';
-  selectedTimeZone: String = 'Europe/Budapest';
+  defaultTimeZone: String = 'Europe/Budapest';
+  zoneCount=0;
+  defaultZone='hu-HU';
+  zoneTimes: {toZone: String, toZoneCity: String, actual: Boolean, id: number}[] = []
+  selectedTimeZone: number = 1;
 
-  zoneTimes: {toZone: String, toZoneCity: String, actual: Boolean, id: number}[] = [
-    {toZone: 'hu-HU', toZoneCity: 'Europe/Budapest', actual: true, id: 1},
-    {toZone: 'en-US', toZoneCity: 'America/Toronto', actual: false, id: 2}
-  ]
+  updateSelectedTimezone(timeZoneId: number) {
+    this.selectedTimeZone=timeZoneId;
+  }
 
-  updateSelectedTimezone(timeZone: String) {
-    this.selectedTimeZone=timeZone;
+  addZoneTime() {
+    this.zoneCount++;
+    this.zoneTimes.push({toZone: this.defaultZone, toZoneCity: this.defaultTimeZone, actual: (this.selectedTimeZone===this.zoneCount ? true : false), id: this.zoneCount});
   }
 
 }
